@@ -6,7 +6,7 @@ interface updateCatParaType {
 }
 
 
-const UpdateCategory = ({openUpdateCatDialog , setOpenUpdateCatDialog} : updateCatParaType )=> {
+const UpdateCategory = ({openUpdateCatDialog , setOpenUpdateCatDialog} : updateCatParaType )=> { // start here
     return(
         <Dialog open={openUpdateCatDialog} onClose={()=>{setOpenUpdateCatDialog(false)}} >
             <DialogContent >
@@ -14,7 +14,7 @@ const UpdateCategory = ({openUpdateCatDialog , setOpenUpdateCatDialog} : updateC
                 <TextField label="category"  />
             </DialogContent>
             <DialogActions>
-                <Button variant="outlined" onClick={()=>{setOpenUpdateCatDialog(false)}} >Cancel</Button>
+                <Button variant="outlined" onClick={()=>{setOpenUpdateCatDialog}} >Cancel</Button>
                 <Button variant="contained" >Update</Button>
             </DialogActions>
         </Dialog>
