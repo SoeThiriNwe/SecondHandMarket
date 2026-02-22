@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Category } from '../../../generated/prisma/client'
-import { NewCategoryParaType } from '@/type/categoryTypes'
+import { NewCategoryParaType, UpdateCategoryParaType } from '@/type/categoryTypes'
 
 interface categorySliceType {
   items : Category[]
@@ -31,6 +31,20 @@ export const deleteCategory = createAsyncThunk("deleteCategory", async ( deleteC
   thunkApi.dispatch(deleteCategoryinSlice(data.deletedCategory))
 })
 
+export const updateCategoryFunction = createAsyncThunk("updateCategory", async ( updateCategoryPara : UpdateCategoryParaType , thunkApi )=>{
+
+  const reponseUpdatedCategory  = await fetch("http://localhost:3000/api/category",{
+    method : "PUT",
+    headers : {"content-type" : "application/json"},
+    body : JSON.stringify({ updateId : updateCategoryPara.id , updateName :  updateCategoryPara.name })
+  })
+  const data  = await reponseUpdatedCategory.json();
+  thunkApi.dispatch(updateCategoryinSlice(data.updatedCategory))
+
+})
+
+
+
 export const categorySlice = createSlice({
   name: 'category',
   initialState,
@@ -43,10 +57,13 @@ export const categorySlice = createSlice({
       },
       deleteCategoryinSlice : (state, action)=>{
         state.items = state.items.filter((item)=> item.id !== action.payload.id )
+      },
+      updateCategoryinSlice : (state, action) =>{
+        state.items = state.items.map( item =>  item.id === action.payload.id ? action.payload : item  )
       }
   },
 })
 
-export const { addCategoriesToSlice , setRelatedCategories , deleteCategoryinSlice } = categorySlice.actions;
+export const { addCategoriesToSlice , setRelatedCategories , deleteCategoryinSlice , updateCategoryinSlice } = categorySlice.actions;
 
 export default categorySlice.reducer;

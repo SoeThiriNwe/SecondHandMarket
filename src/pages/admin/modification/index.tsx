@@ -42,8 +42,9 @@ const modification = ()=>{
                     })}
                 </Box>
 
-                    <UpdateCategory openUpdateCatDialog={openUpdateCatDialog} setOpenUpdateCatDialog={setOpenUpdateCatDialog} />
-              <CategoryDialog openCatDialog={openCatDialog} setOpenCatDialog={setOpenCatDialog} />
+                    {selectedCategory ? <UpdateCategory selectedCategory={selectedCategory} openUpdateCatDialog={openUpdateCatDialog} setOpenUpdateCatDialog={setOpenUpdateCatDialog} /> : undefined}
+
+                    <CategoryDialog openCatDialog={openCatDialog} setOpenCatDialog={setOpenCatDialog} />
 
         </Box>
     )

@@ -19,7 +19,6 @@ const CategoryDialog = ({ openCatDialog , setOpenCatDialog } : ParameterType  )=
         }
     }
 
-
     return(
         <Dialog  open={openCatDialog} onClose={()=>{setOpenCatDialog(false)}} >
             <DialogTitle>New Catgory</DialogTitle>

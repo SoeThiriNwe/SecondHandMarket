@@ -18,6 +18,11 @@ export default async function handler(
       const deletedCategory =   await prisma.category.delete({where : {id : body.deletedId}})
       return res.status(200).json({deletedCategory})
     }
+    else if(method === "PUT"){
+      const body = req.body;
+      const updatedCategory = await prisma.category.update({where : {id : body.updateId} ,data : {name : body.updateName}})
+      return res.status(200).json({updatedCategory})
+    }
 
   res.status(200).json({ name: "John Doe" });
 }
