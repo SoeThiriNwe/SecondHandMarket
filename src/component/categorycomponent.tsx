@@ -15,8 +15,9 @@ const CategoryDialog = ({ openCatDialog , setOpenCatDialog } : ParameterType  )=
 
     const handleCreateNewCategory = async ()=>{
         if(userObject) {
-            dispatch(createNewCategory( { category : category , userId : userObject.id } ))
-        }
+          await  dispatch(createNewCategory( { category : category , userId : userObject.id } ))
+          setOpenCatDialog(false)
+        } 
     }
 
     return(

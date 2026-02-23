@@ -15,8 +15,14 @@ const UpdateCategory = ({openUpdateCatDialog , setOpenUpdateCatDialog, selectedC
     const dispatch = useAppDispatch();
     const [updateCategory, setUpdateCategory] = useState<Category>(selectedCategory)//selected category is already had. thus, initial value is selected category.
 
-    const handleUpdateCategory = ()=>{
-        dispatch(updateCategoryFunction({id : updateCategory.id , name : updateCategory.name}))
+    // const handleUpdateCategory = ()=>{
+    //     dispatch( updateCategoryFunction({id : updateCategory.id , name : updateCategory.name , onSuccess : () =>  { setOpenUpdateCatDialog(false) } }))
+        
+    // }
+
+    const handleUpdateCategory = async()=>{
+        await dispatch( updateCategoryFunction({id : updateCategory.id , name : updateCategory.name}))
+        setOpenUpdateCatDialog(false)
     }
 
     return(
